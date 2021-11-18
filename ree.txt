@@ -1,0 +1,67 @@
+Profile|
+	1> firstname
+	2> lastname(optional)
+	3> bio(default)
+	4> friends(optional)
+ 	 > user(unique)(connect User)
+	 > birth_data 
+	 > join_date 
+	 > gender 
+	 > avatar
+	 > email
+	 > slug
+
+Relationship|
+	1 sender
+	3 receiver
+	4 status
+	5 update 
+	6 create 
+
+
+Signals|
+	1 create profile from user
+	2 add friends realationship with profile
+	3 remove friends with profile
+
+
+
+Author:
+	post qo'shganda birdan author qo'shilishi
+	
+
+
+	
+
+Update profile|
+
+
+
+#IMPORTANT
+profile pictursni default qilish 
+	va 
+random qilish kerak 
+
+google authenticated set qilish kerak
+
+
+#important2
+ads qo'shish kerak
+
+
+
+----------front-end
+footer 
+
+profile detail ichida profile yaratgan postlar
+
+
+profiles bo'limidagi profile rasimlarni ustiga borganda rasim o'zgarishi kerak
+	va ustini to'ldirish kerak
+
+profiles pageni gorizontal qilish kerak
+
+home page-ni ichini to'ldirish kerak
+
+
+

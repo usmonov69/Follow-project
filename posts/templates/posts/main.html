@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+
+{% block  title  %}Profile List{%  endblock title %}
+
+{% block content  %}
+   <div class="ui grid " >
+	<div class="row">
+		<div class="four wide column">
+
+			{% if user.is_authenticated %}
+				<h1>{{ profile | title}}</h1>
+			
+				<a href="{% url 'profiles:profile-list' %}">
+					<button class="ui primary button">People to follow</button>
+				</a>
+				<br><br>
+				Following:
+				<ul>
+				{% for p in profile.friends.all %}
+				<div class="ui list">
+			      <a href="{% url 'profiles:profile-detail' profile.pk %}" class="header">{{ p | title }}</a>
+			    </div>
+				{% endfor %}
+			</ul>
+			  <hr>
+				{% if posts %}
+				{% endif %}
+		{% endif %}
+		</div>
+		<div class="twelve wide column">
+				{% if posts %}
+				{% for post in posts %}
+					<div class="ui segment">
+						{% if post.image %}
+							<img class="ui fluid image" src="{{ post.image.url }}">
+					
+						{% endif %}
+						<a href="{% url 'detail-post' post.pk%}"><h3>{{ post.title }}</h3></a>
+						<p>{{ post.created }}</p>
+							{% ifequal request.user  post.author.user  %}
+						<a href="{% url 'profiles:myprofile' %}">
+						{{ post.author | title}}</a> | 
+						 <a href="{% url 'update-post' post.id %}">update</a>-
+						 <a href="{% url 'delete-post' post.pk%}">delete</a>
+
+							{% else %}
+						{{ post.author | title}}
+							{% endifequal %}
+						<hr>
+						{{ post.body }}
+					</div>
+					{% endfor %}
+					 <nav aria-label="Page navigation example">
+		              <ul class="pagination pagination-template d-flex justify-content-center">
+		                <li class="page-item">
+		                   {% if queryset.has_previous %}
+		                <a href="?{{ page_request_var }}={{ queryset.previous_page_number }}" class="page-link"> <i class="fa fa-angle-left"></i></a>
+		                  {% endif %}
+		              </li>
+		                <li class="page-item"><a  href="?{{ page_request_var }}={{ queryset.page.number }}"class="page-link active">{{ queryset.number }}</a></li>
+		                <li class="page-item">
+		                    {% if queryset.has_next %}
+		                  <a  href="?{{ page_request_var }}={{ queryset.next_page_number }}" class="page-link"> <i class="fa fa-angle-right"></i></a>
+		                    {% endif %}
+		                </li>
+		              </ul>
+		            </nav>
+				{% else %}
+					
+				<div class="ui success message">
+				  <i class="close icon"></i>
+				  <div class="header">
+				    Welcome! {{profile|title}}  to our website!
+				  </div>
+				  <p>if you want new posts to appear here,<a href="{% url 'profiles:profile-list' %}">JOIN</a>  your friends or <a href="{% url 'create-post' %}">CREATE a NEW POST</a></p>
+				</div>
+				{% endif %}
+		
+		</div>
+	</div>
+</div>
+
+{%  endblock content %}
+
+
+

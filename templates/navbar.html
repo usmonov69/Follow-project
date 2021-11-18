@@ -1,0 +1,65 @@
+<div class="ui inverted segment">
+  <div class="ui inverted secondary menu">
+    <a href="/" class="item">
+      Home
+    </a>
+    {% if user.is_authenticated %}
+    <a  href="{% url 'profiles:profile-list' %}" class="item">
+      Profiles
+    </a>
+    <a href="{% url 'posts-profile' %}" class="item ">
+      Posts
+    </a>
+    {% else %}
+    <a  href="{% url 'account_login' %}" class="item">
+      Profiles
+    </a>
+    <a href="{% url 'account_login' %}" class="item ">
+      Posts
+    </a>
+    {% endif %}
+     <div class="right menu">
+      {% if user.is_authenticated %}
+
+
+<!-- 
+      <div class="ui right aligned category search">
+        <div class="ui semantic">
+        <form action="{% url 'profiles:search' %}" class="ui form" class="search-form">
+            <input type="search" name="q" id="search" placeholder="Who are you looking for?"><button type="submit" class="submit"></button>
+        </form>
+        </div> -->
+
+      <div class="ui right aligned category search">
+        <div class="ui icon input">
+           <form action="{% url 'profiles:search' %}" class="ui form" class="search-form">
+            <input type="search" name="q" id="search" placeholder="Who are you looking for?">
+        </form>
+          <i class="search icon"></i>
+        </div>
+        <div class="results"></div>
+      </div>
+
+
+
+    </div>
+      <a href="{% url 'create-post' %}" class="item">
+        Create Post
+      </a>
+      <div class="ui dropdown item">
+      Myprofile <i class="dropdown icon"></i>
+      <div class="menu">
+          <a href="{% url 'profiles:myprofile' %}" class="item">Profile</a>
+          <a class="item">posts</a>
+          <a href="{% url 'account_logout' %}" class="item">logout</a>
+      </div>
+      </div>
+          {% else %}
+          <a href="{% url 'account_login' %}" class="item">login</a>
+          <a href="{% url 'account_signup' %}" class="item">signup</a>
+        {% endif %}
+  </div>
+</div>
+</div>
+
+

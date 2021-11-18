@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+
+
+{% block title %}detail{% endblock title %}
+
+
+{% block content %}
+<!-- modul -->
+	<!-- <div class="ui basic modal" style="top: 100px; height: 400px">
+	  <div class="ui icon header">
+	    <i class="user plus icon"></i>
+	    Are you sure you want to follow {{ object }}?
+	  </div>
+	  <div class="content">
+	    <p>By clicking yes you will see all the posts published by {{ object }} </p>
+	  </div>
+	  <div class="actions">
+	   <form action="{% url 'profiles:follow_unfollow' %}" method="POST">
+	   {% csrf_token %}
+	   <input type="hidden" name="profile_pk" value="{{object.pk}}">
+	    <button class="ui green ok inverted button">
+	      <i class="checkmark icon"></i>
+	      Yes
+	    </button>
+	    </form>
+	  </div>
+	</div> -->
+<!-- 
+	<div class="ui grid">
+		
+			<div class="four wide column">
+				{{ object | title}}
+				<hr>
+				{% if follow %}
+					<form action="{% url 'profiles:follow_unfollow' %}" method="POST">
+						{% csrf_token %}
+						<input type="hidden" name="profile_pk" value="{{object.pk}}">
+						<button class="ui green button">follow</button>
+					</form>
+				{% else %}
+					 <form action="{% url 'profiles:follow_unfollow' %}" method="POST">
+	  					 {% csrf_token %}
+	 			  <input type="hidden" name="profile_pk" value="{{object.pk}}">
+						<button  class="ui negative button ">unfollow</button> 
+	    			
+	   				 </form>
+				{% endif %}
+			</div>
+			<div class="twelve wide column">
+				{% for post in object.profiles_posts %}
+				<div class="ui segment">
+					{{ post.body }}					
+				</div>
+				{% endfor %}
+			</div>
+			
+		
+		</div>
+	</div>
+
+{% block scripts %}
+<script>
+$(document).ready(function(){
+	$('#follow-btn').click(function(){
+		$('.ui.basic.modal')
+		.modal('show')
+;
+	})
+})
+
+</script>
+
+{% endblock scripts %}
+
+
+
+  -->
+
+
+	
+<div class="ui segment">
+	<h3>Profile Name :{{object.user | title}}</h3>
+	<div class="ui grid">
+		<div class="row">
+			<div class="six wide column">
+				<img class="ui medium rounded image" src="{{ object.avatar.url }}">
+				<div class="row mt-5" >
+					{% if follow %}
+					<form action="{% url 'profiles:follow_unfollow' %}" method="POST">
+						{% csrf_token %}
+						<input type="hidden" name="profile_pk" value="{{object.pk}}">
+						<button class="ui green button">follow</button>
+					</form>
+				{% else %}
+					 <form action="{% url 'profiles:follow_unfollow' %}" method="POST">
+	  					 {% csrf_token %}
+	 			  <input type="hidden" name="profile_pk" value="{{object.pk}}">
+						<button  class="ui negative button ">unfollow</button> 
+	    			
+	   				 </form>
+				{% endif %}
+				</div>
+			</div>
+			<div class="ten wide column">
+				<table class="ui table">
+					<tbody>
+						<tr>
+							<td>username</td>
+							<td>{{object.user}}</td>
+						</tr>
+						<tr>
+							<td>first name</td>
+							<td>{{ object.first_name }}</td>
+						</tr>
+						<tr>
+							<td>last name</td>
+							<td>{{ object.last_name }}</td>
+						</tr>
+						<tr>
+							<td>bio</td>
+							<td>{{ object.bio }}</td>
+						</tr>
+						<tr>
+						<td>user posts</td>
+							{% for obj in object.profiles_posts %}
+						<td>{{ obj }}</td>
+							{% endfor %}
+						</tr>
+												
+
+					
+						
+						
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	</div>
+
+{% endblock content   %}

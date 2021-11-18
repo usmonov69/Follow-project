@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<center><h1>The result you are looking for</h1>
+<div class="ui placeholder segment">
+  <div class="ui icon header">
+    <i class="search icon"></i>
+    	{% if queryset %}
+    	{% for obj in queryset %}
+    	<br>
+       <img  style="margin-top: -0.43em;" class="ui avatar image" src="{{ obj.avatar.url }}">
+		<span style="font-size: 30px; padding-bottom: 30px;" ><a href="{% url 'profiles:profile-detail' obj.pk%}">{{ obj.user |title }}</a></span>
+       	
+
+       	{% endfor %}
+
+       	{% else %}
+
+       	<h1>Sorry we didn't find anyone </h1><i class="meh icon"></i>
+       	{%endif%}
+  </div>
+  <div class="inline">
+  </div>
+</div>
+</center>
+{% endblock content %}
+
+<!-- <a href="{% url 'profiles:profile-detail' obj.pk%}"><button class="ui primary button mb-5 w-big">See profile</button></a> -->

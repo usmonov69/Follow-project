@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Update {{posts }}{% endblock title %}
+
+
+{% block content %}
+ <h1>Update post {{ posts}}</h1>
+	<div class="ui semantic">
+		<form action="" method="POST" class="ui form" enctype="multipart/form-data">
+			{% csrf_token %}
+			{{ form }}
+			<br/>
+			<button class="ui blue button" type="submit">Submit</button>
+		</form>
+	</div>
+
+
+
+{% endblock content %}
