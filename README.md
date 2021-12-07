@@ -2,6 +2,7 @@
 
 Hello friends in this project you can follow your friends and follow their posts :smiley:
 
+🔗 https://friends7.pythonanywhere.com/
 
 
 
